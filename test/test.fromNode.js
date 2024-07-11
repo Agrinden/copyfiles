@@ -325,11 +325,9 @@ test('follow', function (t) {
     fs.symlinkSync('origin', 'input/dest');
     copyfiles(['input/**/*.txt', 'output'], { up: 1, follow: true }, function (err) {
       t.error(err, 'copyfiles');
-      glob('output/**/*.txt', function (err, files) {
-        t.error(err, 'readdir');
-        t.deepEquals(files, ['output/dest/inner/a.txt', 'output/origin/inner/a.txt'], 'correct number of things');
-        t.end();
-      });
+      const files = glob.globSync('output/**/*.txt');
+      t.deepEquals(files, ['output/origin/inner/a.txt', 'output/dest/inner/a.txt'], 'correct number of things');
+      t.end();
     });
   });
   t.test('teardown', after);

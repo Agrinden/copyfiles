@@ -95,16 +95,16 @@ function copyFiles(args, config, callback) {
   toStream(input.map(function(srcP) {return srcP.startsWith('~') ? untildify(srcP) : srcP;}))
   .pipe(through(function (pathName, _, next) {
     var self = this;
-    glob(pathName, globOpts, function (err, paths) {
-      if (err) {
-        return next(err);
-      }
+    try {
+      const paths = glob.globSync(pathName, globOpts)
       paths.forEach(function (unglobbedPath) {
         debug(`unglobed path: ${unglobbedPath}`);
         self.push(unglobbedPath);
       });
       next();
-    });
+    } catch (err) {
+      next(err)
+    }
   }))
   .on('error', callback)
   .pipe(through(function (pathName, _, next) {
