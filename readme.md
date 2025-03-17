@@ -1,17 +1,18 @@
-copyfiles [![Build Status](https://travis-ci.org/calvinmetcalf/copyfiles.svg)](https://travis-ci.org/calvinmetcalf/copyfiles)
-===
+## About this fork
 
-copy files easily
+This package is a fork of `copyfiles` with a security fix:
+- Updated `glob` dependency to fix security issues.
+- Repository: [https://github.com/Agrinden/copyfiles](https://github.com/Agrinden/copyfiles)
 
 ### Install
 
 ```bash
-npm install copyfiles -g
+npm install copyfiles-fixed
 ```
 ### Command Line
 
 ```bash
-  Usage: copyfiles [options] inFile [more files ...] outDirectory
+  Usage: copyfiles-fixed [options] inFile [more files ...] outDirectory
 
   Options:
     -u, --up       slice a path off the bottom of the paths               [number]
@@ -30,7 +31,7 @@ copy some files, give it a bunch of arguments, (which can include globs), the la
 is the out directory (which it will create if necessary).  Note: on windows globs must be **double quoted**, everybody else can quote however they please.
 
 ```bash
-copyfiles foo foobar foo/bar/*.js out
+copyfiles-fixed foo foobar foo/bar/*.js out
 ```
 
 you now have a directory called out, with the files foo and foobar in it, it also has a directory named foo with a directory named
@@ -39,13 +40,13 @@ bar in it that has all the files from foo/bar that match the glob.
 If all the files are in a folder that you don't want in the path out path, ex:
 
 ```bash
-copyfiles something/*.js out
+copyfiles-fixed something/*.js out
 ```
 
 which would put all the js files in `out/something`, you can use the `--up` (or `-u`) option
 
 ```bash
-copyfiles -u 1 something/*.js out
+copyfiles-fixed -u 1 something/*.js out
 ```
 
 which would put all the js files in `out`
@@ -53,7 +54,7 @@ which would put all the js files in `out`
 you can also just do -f which will flatten all the output into one directory, so with files ./foo/a.txt and ./foo/bar/b.txt
 
 ```bash
-copyfiles -f ./foo/*.txt ./foo/bar/*.txt out
+copyfiles-fixed -f ./foo/*.txt ./foo/bar/*.txt out
 ```
 
 will put a.txt and b.txt into out
@@ -61,7 +62,7 @@ will put a.txt and b.txt into out
 if your terminal doesn't support globstars then you can quote them
 
 ```bash
-copyfiles -f ./foo/**/*.txt out
+copyfiles-fixed -f ./foo/**/*.txt out
 ```
 
 does not work by default on a mac
@@ -69,20 +70,20 @@ does not work by default on a mac
 but
 
 ```bash
-copyfiles -f "./foo/**/*.txt" out
+copyfiles-fixed -f "./foo/**/*.txt" out
 ```
 
 does.
 
 You could quote globstars as a part of input:
 ```bash
-copyfiles some.json "./some_folder/*.json" ./dist/ && echo 'JSON files copied.'
+copyfiles-fixed some.json "./some_folder/*.json" ./dist/ && echo 'JSON files copied.'
 ```
 
 You can use the -e option to exclude some files from the pattern, so to exclude all files ending in .test.js you could do
 
 ```bash
-copyfiles -e "**/*.test.js" -f ./foo/**/*.js out
+copyfiles-fixed -e "**/*.test.js" -f ./foo/**/*.js out
 ```
 
 Other options include
@@ -98,7 +99,7 @@ also creates a `copyup` command which is identical to `copyfiles` but `-up` defa
 ### Programic API
 
 ```js
-var copyfiles = require('copyfiles');
+var copyfiles = require('copyfiles-fixed');
 
 copyfiles([paths], opt, callback);
 ```

@@ -1,16 +1,16 @@
 {
   "name": "copyfiles-fixed",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Fork of copyfiles with glob security fix",
   "main": "index.js",
   "bin": {
-    "copyfiles": "./copyfiles",
-    "copyup": "./copyfiles"
+    "copyfiles-fixed": "./copyfiles",
+    "copyup-fixed": "./copyfiles"
   },
   "scripts": {
     "test": "tape test/test.*.js | tspec"
   },
-  "author": "",
+  "author": "Agrinden",
   "license": "MIT",
   "dependencies": {
     "glob": "^11.0.1",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/copyfiles.git"
+    "url": "https://github.com/Agrinden/copyfiles.git"
   },
   "devDependencies": {
     "rimraf": "^2.2.6",
