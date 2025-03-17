@@ -1,7 +1,7 @@
 {
-  "name": "copyfiles",
-  "version": "2.4.1",
-  "description": "copy some files",
+  "name": "copyfiles-fixed",
+  "version": "2.4.2",
+  "description": "Fork of copyfiles with glob security fix",
   "main": "index.js",
   "bin": {
     "copyfiles": "./copyfiles",
