@@ -1,8 +1,11 @@
 {
   "name": "copyfiles-fixed",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "Fork of copyfiles with glob security fix",
   "main": "index.js",
+  "engines": {
+    "node": "20 || >=22"
+  },
   "bin": {
     "copyfiles-fixed": "./copyfiles",
     "copyup-fixed": "./copyfiles"
@@ -13,8 +16,7 @@
   "author": "Agrinden",
   "license": "MIT",
   "dependencies": {
-    "glob": "^11.0.1",
-    "minimatch": "^3.0.3",
+    "glob": "^14.0.6",
     "mkdirp": "^1.0.4",
     "noms": "0.0.0",
     "through2": "^2.0.1",

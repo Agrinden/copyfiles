@@ -44,6 +44,35 @@ test('normal', function (t) {
   });
   t.test('teardown', after);
 });
+test('release copy patterns', function (t) {
+  t.test('setup', before);
+  t.test('nested sources with up 4', function (t) {
+    mkdirp('input/workspace/project/src/nested', function (err) {
+      t.error(err, 'mkdirp');
+      fs.writeFileSync('input/workspace/project/src/nested/source.ts', 'source');
+      var result = cp.spawnSync(process.execPath, ['./copyfiles', '-E', '-u', '4', 'input/workspace/project/src/**/*.ts', 'output/sources']);
+      t.equal(result.status, 0, String(result.stderr));
+      t.equal(fs.readFileSync('output/sources/nested/source.ts', 'utf8'), 'source');
+      t.end();
+    });
+  });
+  t.test('flatten CSS', function (t) {
+    fs.writeFileSync('input/workspace/project/src/nested/style.css', 'body {}');
+    var result = cp.spawnSync(process.execPath, ['./copyfiles', '-E', '-f', 'input/**/*.css', 'output/styles']);
+    t.equal(result.status, 0, String(result.stderr));
+    t.equal(fs.readFileSync('output/styles/style.css', 'utf8'), 'body {}');
+    t.end();
+  });
+  t.test('literal path', function (t) {
+    fs.writeFileSync('input/config.json', '{}');
+    copyfiles(['input/config.json', 'output/literal'], {error: true, up: 1}, function (err) {
+      t.error(err, 'copyfiles');
+      t.equal(fs.readFileSync('output/literal/config.json', 'utf8'), '{}');
+      t.end();
+    });
+  });
+  t.test('teardown', after);
+});
 test('modes', function (t) {
   t.test('setup', before);
   t.test('copy stuff', function (t) {

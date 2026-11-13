@@ -6,6 +6,8 @@ This package is a fork of `copyfiles` with a security fix:
 
 ### Install
 
+Requires Node.js 20 or 22 and newer.
+
 ```bash
 npm install copyfiles-fixed
 ```
